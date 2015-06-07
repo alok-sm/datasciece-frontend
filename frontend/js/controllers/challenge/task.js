@@ -1,4 +1,4 @@
-app.controller('challengeTaskController', function($scope, $interval, $timeout, $location) {
+app.controller('challengeTaskController', function($http, $localStorage, $scope, $interval, $timeout, $location, Logger) {
     $scope.currentSlide = 1;
 
     $scope.selectedAnswer = undefined;
@@ -86,22 +86,27 @@ app.controller('challengeTaskController', function($scope, $interval, $timeout, 
             return;
         }
         $scope.currQuestion = index;
-         // $http.get("http://crowds.5harad.com/api/tasks?token=" + $localStorage.token).
-         // success(function(response){
-         //    $scope.question.text = response.task.title;
-         //    if(response.task.answers=="mcq")
-         //    $scope.question.type = "options";
-         // });
-        $scope.question = questionArr[$scope.currQuestion];
-        $scope.previousResponses = $scope.question.previousResponses;
-        $scope.answers =$scope.question.answers;
-        updatePreviousResponseCount();
+         $http.get("http://crowds.5harad.com/api/tasks?token=" + $localStorage.token).
+         success(function(response){
+            Logger.log(response);
+            $scope.question = {};
+            $scope.question.questionType = response.task.type;
+            $scope.question.text = response.task.title;
+            $scope.question.type = response.task.answer_type;
+            $scope.question.data = response.task.data;
+            $scope.answers = response.task.answer_data.split(",");
+            Logger.log($scope.answers);
+            // $scope.question = response;
 
-        $scope.selectedAnswer = undefined;
-        $scope.selectedCL = undefined;
+            $scope.previousResponses = $scope.question.previousResponses;
+            updatePreviousResponseCount();
 
-        switchSlides();
-        resetTimer();
+            $scope.selectedAnswer = undefined;
+            $scope.selectedCL = undefined;
+
+            switchSlides();
+            resetTimer();
+         });
     }
 
     function updatePreviousResponseCount() {

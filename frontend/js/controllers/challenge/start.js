@@ -34,14 +34,16 @@ app.controller('challengeStartController', function($http, $scope, $location, $l
         }
 
         function validRank(rank) {
-            if(!isInt(rank)) {
-                return false;
-            }
+            // Logger.log(rank);
             rank = parseInt(rank);
-            if(rank < 1 || rank > 100) {
-                return false;
-            }
-            return true;
+            // if(!isInt(rank)) {
+            //     return false;
+            // }
+            // if(rank < 1 || rank > 100) {
+            //     return false;
+            // }
+            // return true;
+            return(rank > 0 && rank <=100 && isInt(rank)) 
         }
     })
     .error(function(error){
