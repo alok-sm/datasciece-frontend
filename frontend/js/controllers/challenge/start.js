@@ -1,39 +1,49 @@
-app.controller('challengeStartController', function($scope, $location, $localStorage, Api, Logger) {
+app.controller('challengeStartController', function($http, $scope, $location, $localStorage, Api, Logger) {
     $scope.user = {};
-    $scope.domainInfo = "You will be shown 20 images of flags, and asked to identify the country of origin.";
-    $scope.prev = function() {
-        $location.path('user/terms-and-conditions');
-    }
-    $scope.validInput = function() {
-        if(validRank($scope.user.rank)) {
+    $http.get("http://crowds.5harad.com/api/tasks?token=" + $localStorage.token)
+    .success(function(response){
+        $scope.domainInfo = response.domain.name;
+        $localStorage.domainId = response.domain.id;
+        Logger.log(response);
+        // $scope.domainInfo = "fuck you!";
+        $scope.prev = function() {
+            $location.path('user/terms-and-conditions');
+        }
+        $scope.validInput = function() {
+            if(validRank($scope.user.rank)) {
+                return true;
+            }
+            return false;
+        }
+
+        $scope.startChallenge = function(e) {
+            $(e.target).button('loading');
+            if(!$scope.validInput()) {
+                return;
+            }
+            var data = {};
+            data.token = $localStorage.token;
+            data.rank = $scope.user.rank;
+            data.domain_id = $localStorage.domainId;
+            Api.submitExpectedRank(data, function(success){
+                $location.path('challenge/task');
+            }, function(error){
+                alert(error);
+            });
+        }
+
+        function validRank(rank) {
+            if(!isInt(rank)) {
+                return false;
+            }
+            rank = parseInt(rank);
+            if(rank < 1 || rank > 100) {
+                return false;
+            }
             return true;
         }
-        return false;
-    }
-
-    $scope.startChallenge = function(e) {
-        $(e.target).button('loading');
-        if(!$scope.validInput()) {
-            return;
-        }
-        var data = {};
-        data.token = $localStorage.token;
-        data.rank = $scope.user.rank;
-        Api.submitExpectedRank(data, function(success){
-            $location.path('challenge/task');
-        }, function(error){
-            alert(error);
-        });
-    }
-
-    function validRank(rank) {
-        if(!isInt(rank)) {
-            return false;
-        }
-        rank = parseInt(rank);
-        if(rank < 1 || rank > 100) {
-            return false;
-        }
-        return true;
-    }
+    })
+    .error(function(error){
+        alert(error);
+    });
 });

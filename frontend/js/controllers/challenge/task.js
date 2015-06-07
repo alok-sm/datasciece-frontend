@@ -158,6 +158,7 @@ app.controller('challengeTaskController', function($scope, $interval, $timeout, 
                 type: "options",
                 imagePath: "question-media/sockless-shoes.png",
                 answers: ["Yes", "No"]
+                // previousResponses: [{text: "Yes", count: 3}, {text: "No", count: 2}]
                 //answers: ["Mary Poppins", "Star Wars", "Jurrasic Park", "Titanic"]
             },
             {

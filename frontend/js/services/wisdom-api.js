@@ -14,6 +14,7 @@ app.factory('WisdomApi', function($http, Logger) {
 
     // expects data to have fields: token, rank
     api.submitExpectedRank = function(data, success, error) {
+        post(url + "/answers",data,success,error);
     }
 
     function post(url, data, success, error) {
