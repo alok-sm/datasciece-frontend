@@ -5,6 +5,7 @@ app.controller('challengeStartController', function($http, $scope, $location, $l
         $scope.domainInfo = response.domain.name;
         $localStorage.domainId = response.domain.id;
         Logger.log(response);
+        console.log(response);
         // $scope.domainInfo = "fuck you!";
         $scope.prev = function() {
             $location.path('user/terms-and-conditions');

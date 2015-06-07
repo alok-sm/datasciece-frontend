@@ -1,7 +1,7 @@
 <div class="stats-container">
     <div class="stats small">
         <div class="stats-label">Answers from last {{previousResponseCount}} troopers</div>
-        <table ng-if="question.type !== 'number'">
+        <table ng-if="question.type !== 'text'">
             <tr ng-repeat="response in previousResponses" class="stats-item">
                 <td>{{response.text}}</td>
                 <td class="bar-col">
@@ -14,7 +14,7 @@
                 </td>
             </tr>
         </table>
-        <table ng-if="question.type === 'number'">
+        <table ng-if="question.type === 'text'">
             <tr ng-repeat="response in previousResponses" class="stats-item">
                 <td>{{$index + 1}}. </td>
                 <td class="number-response">{{response}}</td>

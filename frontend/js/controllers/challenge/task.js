@@ -63,7 +63,7 @@ app.controller('challengeTaskController', function($scope, $interval, $timeout, 
     }
 
     function isValidAnswer(answer) {
-        if($scope.question.type === 'number') {
+        if($scope.question.type === 'text') {
             return isInt(answer);
         }
 
@@ -76,6 +76,7 @@ app.controller('challengeTaskController', function($scope, $interval, $timeout, 
     }
 
     function next() {
+        // fetch next question here
         setCurrQuestion($scope.currQuestion + 1);
     }
 
@@ -85,6 +86,12 @@ app.controller('challengeTaskController', function($scope, $interval, $timeout, 
             return;
         }
         $scope.currQuestion = index;
+         // $http.get("http://crowds.5harad.com/api/tasks?token=" + $localStorage.token).
+         // success(function(response){
+         //    $scope.question.text = response.task.title;
+         //    if(response.task.answers=="mcq")
+         //    $scope.question.type = "options";
+         // });
         $scope.question = questionArr[$scope.currQuestion];
         $scope.previousResponses = $scope.question.previousResponses;
         $scope.answers =$scope.question.answers;
@@ -102,7 +109,7 @@ app.controller('challengeTaskController', function($scope, $interval, $timeout, 
         if($scope.previousResponses === undefined) {
             return;
         }
-        if($scope.question.type === "number") {
+        if($scope.question.type === "text") {
             $scope.previousResponseCount = $scope.previousResponses.length;
             return;
         }
@@ -155,7 +162,7 @@ app.controller('challengeTaskController', function($scope, $interval, $timeout, 
         var questions = [
             {
                 text: "Will this business be funded by Kickstarter?",
-                type: "options",
+                type: "mcq",
                 imagePath: "question-media/sockless-shoes.png",
                 answers: ["Yes", "No"]
                 // previousResponses: [{text: "Yes", count: 3}, {text: "No", count: 2}]
@@ -163,14 +170,14 @@ app.controller('challengeTaskController', function($scope, $interval, $timeout, 
             },
             {
                 text: "Will this business be funded by Kickstarter?",
-                type: "options",
+                type: "mcq",
                 imagePath: "question-media/sockless-shoes.png",
                 answers: ["Yes", "No"],
                 previousResponses: [{text: "Yes", count: 3}, {text: "No", count: 2}]
             },
             {
                 text: "What is the name of this constellation?",
-                type: "options",
+                type: "mcq",
                 imagePath: "question-media/constellation.png",
                 answers: ["Leo", "Apus", "Lupus", "Columba", "Gemini"],
                 previousResponses: [{text: "Leo", count: 500}, {text: "Apus", count: 2}, {text: "Lupus", count: 2},
@@ -178,7 +185,7 @@ app.controller('challengeTaskController', function($scope, $interval, $timeout, 
             },
             {
                 text: "What is this country’s landmass in square meters?",
-                type: "number",
+                type: "text",
                 imagePath: "question-media/brazil.png",
                 previousResponses: [28497, 328472, 124, 0, 23498]
             }
