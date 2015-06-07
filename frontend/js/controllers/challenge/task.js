@@ -42,6 +42,7 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
     }
 
     $scope.selectAnswer = function(answer) {
+        console.log($scope.selectedAnswer);
         $scope.selectedAnswer = answer;
     }
 
@@ -63,8 +64,8 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
     }
 
     function isValidAnswer(answer) {
-        if($scope.question.type === 'text') {
-            return isInt(answer);
+        if($scope.question.type === 'text'||$scope.question.type==='int') {
+            return true;
         }
 
         for(var i = 0; i < $scope.answers.length; i++) {
@@ -76,25 +77,21 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
     }
 
     function next() {
-        // fetch next question here
-        // var req_params = {
-        //                     "token"      : $localStorage.token,
-        //                     "time_taken" : $scope.timeLeft,
-        //                     "confidence" : $scope.selectedCL,
-        //                     "data"       : $scope.question.selectedAnswer,
-        //                     "task_id"    : $scope.question.task.id
-        //                 }
-        //                 debug.log(req_params)
-        //                 bootbox.dialog({
-        //                     title: "Loading",
-        //                     message: '<center><img src="../../../loading.gif" width="100px"/></center>'
-        //                 });
-
-        //                 $http.post(api.url + "/answers", req_params)
-        //                 .success(function(response){
-        //                     $scope.submit = null;
-        //                     setQuestion();
-        //                 });
+        var req_params = {
+                            "token"      : $localStorage.token,
+                            "time_taken" : $scope.timeLeft,
+                            "confidence" : $scope.selectedCL,
+                            "data"       : $scope.selectedAnswer,
+                            "task_id"    : $scope.question.taskId
+                        }
+                        console.log($scope.selectedAnswer);
+                        $http.post("http://crowds.5harad.com/api/answers", req_params)
+                        .success(function(response){
+                            console.log("Successful submission");
+                            })
+                        .error(function(response) {
+                        console.log("error in submission");
+                        });
         setCurrQuestion($scope.currQuestion + 1);
     }
 
@@ -109,6 +106,7 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
             Logger.log(response);
             $scope.question = {};
             $scope.question.questionType = response.task.type;
+            $scope.question.taskId = response.task.id;
             $scope.question.text = response.task.title;
             $scope.question.type = response.task.answer_type;
             $scope.question.data = response.task.data;

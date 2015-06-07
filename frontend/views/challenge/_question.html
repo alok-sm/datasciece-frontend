@@ -42,7 +42,7 @@
                             {{answer}}
                         </a>
                     </div>
-                    <div ng-if="question.type === 'text'">
+                    <div ng-if="question.type === 'text' || question.type ==='int'">
                         <input type="text" class="white answer-input" ng-model="$parent.selectedAnswer"/>
                     </div>
                 </div>
