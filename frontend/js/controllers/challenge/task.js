@@ -83,10 +83,11 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
         var req_params = {
             "token"      : $localStorage.token,
             "time_taken" : $scope.timeLeft,
-            "confidence" : $scope.selectedCL,
+            "confidence" : ""+(parseInt($scope.selectedCL) + 1),
             "data"       : $scope.selectedAnswer,
             "task_id"    : $scope.question.taskId
         }
+
         console.log($scope.selectedAnswer);
         console.log(req_params);
         $http.post("http://crowds.5harad.com/api/answers", req_params)
