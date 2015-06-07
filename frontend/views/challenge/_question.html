@@ -34,13 +34,18 @@
             <div class="va-outer width-100 height-30">
                 <div class="va-center">
                     <div class="answer-label">Answer</div>
-                    <div ng-if="question.type === 'select'">
-                        <a class="btn grey answer-button"
-                           ng-repeat="answer in answers"
-                           ng-click="selectAnswer(answer)"
-                           ng-class="{active: answer === selectedAnswer, first: $index % 2 == 0}">
-                            {{answer}}
-                        </a>
+                    <div ng-switch="question.type">
+                        <div ng-switch-when="select">
+                            <a class="btn grey answer-button"
+                               ng-repeat="answer in answers"
+                               ng-click="selectAnswer(answer)"
+                               ng-class="{active: answer === selectedAnswer, first: $index % 2 == 0}">
+                                {{answer}}
+                            </a>
+                        </div>
+                        <div ng-switch-default>
+                            <input ng-model="selectAnswer"
+                        </div>
                     </div>
                     <div ng-if="question.type === 'text'">
                         <input type="text" class="white answer-input" ng-model="$parent.selectedAnswer"/>
