@@ -1,6 +1,24 @@
-<div class="question-media text-center" ng-switch="questionType">
-	<img class="question-image" ng-src="question.data" ng-when="image"/>
-	<p ng-when="text">{{ question.data }}</p>
+
+<div  ng-switch="question.questionType" class="question-media text-center">
+	<img ng-switch-when="image" class="question-image" src="{{question.data}}"/>
+	<p ng-switch-when="text">{{ question.data }}</p>
+	<iframe 
+					ng-switch-when="audio" 
+					id="sc-widget" 
+					width="90%" 
+					height="300" 
+					scrolling="no" 
+					frameborder="no" 
+					src="{{question.data}}" ></iframe>
+	<iframe 
+ 	ng-switch-when="video" 
+ 	id="ytplayer" 
+ 	width="90%" 
+ 	height="400"
+ 	src="{{question.data}}" 
+ 	scrolling="no" 
+ 	frameborder="0">
+ </iframe>
 	<!-- Add more cases for AV -->
 </div>
 
@@ -8,3 +26,29 @@
 <div ng-if="previousResponses !== undefined && previousResponses.length > 0">
     <div ng-include="'views/challenge/_stats.html'"></div>
 </div>
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+	var handler_called = false;
+	// function scInit(){
+	// 	var widgetIframe = document.getElementById('sc-widget');
+	// 	widget           = SC.Widget('sc-widget');
+	// 	widget.bind(SC.Widget.Events.FINISH, function(){
+	// 		angular.element(document.getElementById('container')).scope().timer_event();
+	// 	});
+	// }
+	window.addEventListener('storage', function(event){
+		if(event.key == 'vid_done'){
+			console.log('hello');
+			// $scope.timer_event()
+			if(!handler_called){
+				angular.element(document.getElementById('container')).scope().timer_event();
+				handler_called = true;
+			}
+			
+		}
+	});
+
+	// $(window).load(function(){
+	// 	document.getElementById('ytplayer').contentWindow.play();
+	// });
+</script>

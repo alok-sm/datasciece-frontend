@@ -1,4 +1,4 @@
-app.controller('challengeTaskController', function($http, $localStorage, $scope, $interval, $timeout, $location, Logger) {
+app.controller('challengeTaskController', function($sce,$http, $localStorage, $scope, $interval, $timeout, $location, Logger) {
     $scope.currentSlide = 1;
 
     $scope.selectedAnswer = undefined;
@@ -77,11 +77,29 @@ app.controller('challengeTaskController', function($http, $localStorage, $scope,
 
     function next() {
         // fetch next question here
+        // var req_params = {
+        //                     "token"      : $localStorage.token,
+        //                     "time_taken" : $scope.timeLeft,
+        //                     "confidence" : $scope.selectedCL,
+        //                     "data"       : $scope.question.selectedAnswer,
+        //                     "task_id"    : $scope.question.task.id
+        //                 }
+        //                 debug.log(req_params)
+        //                 bootbox.dialog({
+        //                     title: "Loading",
+        //                     message: '<center><img src="../../../loading.gif" width="100px"/></center>'
+        //                 });
+
+        //                 $http.post(api.url + "/answers", req_params)
+        //                 .success(function(response){
+        //                     $scope.submit = null;
+        //                     setQuestion();
+        //                 });
         setCurrQuestion($scope.currQuestion + 1);
     }
 
     function setCurrQuestion(index) {
-        if(index === 4) {
+        if(index === 20) {
             $location.path("challenge/done");
             return;
         }
@@ -95,6 +113,12 @@ app.controller('challengeTaskController', function($http, $localStorage, $scope,
             $scope.question.type = response.task.answer_type;
             $scope.question.data = response.task.data;
             $scope.answers = response.task.answer_data.split(",");
+            if($scope.question.questionType == "audio"){
+                    $scope.question.data = $sce.trustAsResourceUrl('https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+$scope.question.data+'&amp;auto_play=true&amp;show_artwork=false&amp;hide_related=false&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=true');
+            }
+            if($scope.question.questionType == "video"){
+                    $scope.question.data = $sce.trustAsResourceUrl('ytplayer.html?'+$scope.question.data);
+            }
             Logger.log($scope.answers);
             // $scope.question = response;
 
