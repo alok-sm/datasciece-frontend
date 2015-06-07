@@ -43,8 +43,9 @@
                         </a>
                     </div>
                     <div ng-if="question.type === 'text' || question.type ==='int'">
-                        <input ng-model="selectedAnswer" type="number" class="white answer-input"/>
+                        <input ng-model="answers.selectedAnswer" type="number" class="white answer-input"/>
                     </div>
+                    <h1>{{answers.selectedAnswer}}</h1>
                 </div>
             </div>
             <div class="va-outer width-100 height-30">

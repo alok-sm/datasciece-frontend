@@ -77,6 +77,9 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
     }
 
     function next() {
+        if($scope.question.type === 'text' || $scope.question.type ==='int'){
+            $scope.selectedAnswer = $scope.answers.selectedAnswer;
+        }
         var req_params = {
             "token"      : $localStorage.token,
             "time_taken" : $scope.timeLeft,
@@ -89,11 +92,12 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
         $http.post("http://crowds.5harad.com/api/answers", req_params)
         .success(function(response){
             console.log("Successful submission");
-            })
+
+            setCurrQuestion($scope.currQuestion + 1);
+        })
         .error(function(response) {
         console.log("error in submission");
         });
-        setCurrQuestion($scope.currQuestion + 1);
     }
 
     function setCurrQuestion(index) {
