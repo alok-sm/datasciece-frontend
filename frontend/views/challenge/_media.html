@@ -27,28 +27,3 @@
     <div ng-include="'views/challenge/_stats.html'"></div>
 </div>
 <script src="https://w.soundcloud.com/player/api.js"></script>
-<script>
-	var handler_called = false;
-	// function scInit(){
-	// 	var widgetIframe = document.getElementById('sc-widget');
-	// 	widget           = SC.Widget('sc-widget');
-	// 	widget.bind(SC.Widget.Events.FINISH, function(){
-	// 		angular.element(document.getElementById('container')).scope().timer_event();
-	// 	});
-	// }
-	window.addEventListener('storage', function(event){
-		if(event.key == 'vid_done'){
-			console.log('hello');
-			// $scope.timer_event()
-			if(!handler_called){
-				angular.element(document.getElementById('container')).scope().timer_event();
-				handler_called = true;
-			}
-			
-		}
-	});
-
-	// $(window).load(function(){
-	// 	document.getElementById('ytplayer').contentWindow.play();
-	// });
-</script>

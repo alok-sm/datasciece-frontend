@@ -78,20 +78,21 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
 
     function next() {
         var req_params = {
-                            "token"      : $localStorage.token,
-                            "time_taken" : $scope.timeLeft,
-                            "confidence" : $scope.selectedCL,
-                            "data"       : $scope.selectedAnswer,
-                            "task_id"    : $scope.question.taskId
-                        }
-                        console.log($scope.selectedAnswer);
-                        $http.post("http://crowds.5harad.com/api/answers", req_params)
-                        .success(function(response){
-                            console.log("Successful submission");
-                            })
-                        .error(function(response) {
-                        console.log("error in submission");
-                        });
+            "token"      : $localStorage.token,
+            "time_taken" : $scope.timeLeft,
+            "confidence" : $scope.selectedCL,
+            "data"       : $scope.selectedAnswer,
+            "task_id"    : $scope.question.taskId
+        }
+        console.log($scope.selectedAnswer);
+        console.log(req_params);
+        $http.post("http://crowds.5harad.com/api/answers", req_params)
+        .success(function(response){
+            console.log("Successful submission");
+            })
+        .error(function(response) {
+        console.log("error in submission");
+        });
         setCurrQuestion($scope.currQuestion + 1);
     }
 
