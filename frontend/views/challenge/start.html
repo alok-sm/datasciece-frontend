@@ -1,0 +1,46 @@
+<head>
+    <title>{{SITE_NAME}} | Start of Challenge</title>
+</head>
+
+<div class="slide start">
+    <div class="row header-row height-20">
+        <div class="col-md-2 text-center">
+            <span class="vertical-center-1-line fa fa-angle-double-left back-button" ng-click="prev()"></span>
+        </div>
+        <div class="col-md-8">
+            <h1 class="vertical-center-2-lines">
+                In this round...<br/>
+                <span class="blue-text">{{domainInfo}}</span>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row height-70">
+        <div class="col-md-2"></div>
+        <div class="col-md-4 main-bee">
+            <img src="img/main-bee.png"/>
+        </div>
+        <div class="col-md-6 va-outer">
+            <div class="va-center">
+                Out of a 100 people answering these questions, <br/>
+                where do you think you will place?<br/>
+                <br/>
+                1 is best and 100 is worst
+                <br/>
+                <br/>
+                <form ng-submit="startChallenge()">
+                    <input class="white rank-input" type="text" placeholder="Rank" ng-model="user.rank"/> .<br/>
+                </form>
+                <div class="error" ng-show="user.rank !== undefined && user.rank.length > 0 && !validInput()">
+                    Oops! Rank must be a number between 1 to 100</div>
+            </div>
+        </div>
+    </div>
+
+    <a class="btn blue next-button"
+            ng-click="startChallenge($event)" ng-disabled="!validInput()"
+            data-loading-text='<span class="left triangle"></span>Loading...'>
+        <span class="left triangle"></span>
+        Start challenge!
+    </a>
+</div>

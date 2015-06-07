@@ -1,0 +1,41 @@
+.quick-questions .main-bee {
+    padding-top: 10%;
+}
+
+.quick-questions .va-outer, .question-block {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.quick-questions .question-progress .circle {
+    display: inline-block;
+    margin-right: 2em;
+    cursor: pointer;
+}
+
+.quick-questions .age-block input {
+    width: 40%;
+    margin-right: 3%;
+}
+
+
+.quick-questions .country {
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+.quick-questions .country input {
+    width: 80%;
+}
+
+.quick-questions .autofill {
+    width: 80%;
+    left: 10%;
+}
+
+.quick-questions .education .custom-select {
+    margin-left: 10%;
+    width: 80%;
+}
