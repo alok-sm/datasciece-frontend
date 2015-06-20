@@ -4,6 +4,7 @@ app.controller('challengeStartController', function($http, $scope, $location, $l
     .success(function(response){
         $scope.domainInfo = response.domain.name;
         $localStorage.domainId = response.domain.id;
+        $localStorage.totalQuestions = response.remaining;
         Logger.log(response);
         console.log(response);
         // $scope.domainInfo = "fuck you!";

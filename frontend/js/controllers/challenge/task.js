@@ -9,6 +9,7 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
 
     var timerSize = 50;
     var timerLineWidth = 6;
+    var buttonClicked = false;
 
     // custom size styling for large devices (large desktops, 1280px and up)
     if($(document).height() > 960) {
@@ -18,7 +19,6 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
     var timeAvailable = 30;
 
     $scope.questions = numberArray(0, 19);
-    var questionArr = getQuestionArr();
     setCurrQuestion(0);
     initTimer();
     resetTimer();
@@ -47,7 +47,10 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
     }
 
     $scope.next = function() {
-        next();
+        if(!buttonClicked){
+            buttonClicked = true;
+            next();
+        }
     }
 
     $scope.setCurrQuestion = function(index) {
@@ -93,11 +96,11 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
         $http.post("http://crowds.5harad.com/api/answers", req_params)
         .success(function(response){
             console.log("Successful submission");
-
             setCurrQuestion($scope.currQuestion + 1);
+            buttonClicked = false;
         })
         .error(function(response) {
-        console.log("error in submission");
+            console.log("error in submission");
         });
     }
 
@@ -116,6 +119,7 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
             $scope.question.text = response.task.title;
             $scope.question.type = response.task.answer_type;
             $scope.question.data = response.task.data;
+            $scope.currQuestion = $localStorage.totalQuestions - response.remaining - 1;
             $scope.answers = response.task.answer_data.split(",");
             if($scope.question.questionType == "audio"){
                     $scope.question.data = $sce.trustAsResourceUrl('https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+$scope.question.data+'&amp;auto_play=true&amp;show_artwork=false&amp;hide_related=false&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=true');
@@ -189,40 +193,5 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
     function resetTimer() {
         $scope.timeLeft = timeAvailable;
         $scope.timerPercent = 0;
-    }
-
-    function getQuestionArr() {
-        var questions = [
-            {
-                text: "Will this business be funded by Kickstarter?",
-                type: "mcq",
-                imagePath: "question-media/sockless-shoes.png",
-                answers: ["Yes", "No"]
-                // previousResponses: [{text: "Yes", count: 3}, {text: "No", count: 2}]
-                //answers: ["Mary Poppins", "Star Wars", "Jurrasic Park", "Titanic"]
-            },
-            {
-                text: "Will this business be funded by Kickstarter?",
-                type: "mcq",
-                imagePath: "question-media/sockless-shoes.png",
-                answers: ["Yes", "No"],
-                previousResponses: [{text: "Yes", count: 3}, {text: "No", count: 2}]
-            },
-            {
-                text: "What is the name of this constellation?",
-                type: "mcq",
-                imagePath: "question-media/constellation.png",
-                answers: ["Leo", "Apus", "Lupus", "Columba", "Gemini"],
-                previousResponses: [{text: "Leo", count: 500}, {text: "Apus", count: 2}, {text: "Lupus", count: 2},
-                    {text: "Columba", count: 2}, {text: "Gemini", count: 200}]
-            },
-            {
-                text: "What is this country’s landmass in square meters?",
-                type: "text",
-                imagePath: "question-media/brazil.png",
-                previousResponses: [28497, 328472, 124, 0, 23498]
-            }
-        ];
-        return questions;
     }
 });
