@@ -1,9 +1,9 @@
 app.controller('challengeTaskController', function($sce,$http, $localStorage, $scope, $interval, $timeout, $location, Logger) {
+    $scope.taskPage = true;
     $scope.currentSlide = 1;
 
     $scope.selectedAnswer = undefined;
     $scope.selectedCL = undefined;
-
     $scope.confidenceLevels = numberArray(0, 4);
     $scope.answers = [];
 
@@ -119,6 +119,7 @@ app.controller('challengeTaskController', function($sce,$http, $localStorage, $s
             $scope.question.text = response.task.title;
             $scope.question.type = response.task.answer_type;
             $scope.question.data = response.task.data;
+            timeAvailable = response.timeout;
             $scope.currQuestion = $localStorage.totalQuestions - response.remaining - 1;
             $scope.answers = response.task.answer_data.split(",");
             if($scope.question.questionType == "audio"){

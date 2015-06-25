@@ -4,6 +4,10 @@ app.config(function($routeProvider) {
             templateUrl : 'views/intro/welcome.html',
             controller  : 'introWelcomeController'
         })
+        .when('/', {
+            templateUrl : 'views/intro/welcome.html',
+            controller  : 'introWelcomeController'
+        })
         .when('/intro/explanation', {
             templateUrl : 'views/intro/explanation.html'
         })

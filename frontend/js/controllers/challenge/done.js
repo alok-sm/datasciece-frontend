@@ -1,4 +1,5 @@
 app.controller('challengeDoneController', function($scope, $location) {
+	$scope.taskPage = false;
     $scope.numCorrect = 16;
     $scope.numQuestions = 20;
     $scope.rank = 40;

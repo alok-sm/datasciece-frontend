@@ -1,4 +1,5 @@
 app.controller('quickQuestionsController', function($scope, $timeout, $localStorage, $location) {
+    $scope.taskPage = false;
     $scope.questions = [0, 1, 2, 3];
     $scope.countries = [];
     $scope.countryIndex = 0;

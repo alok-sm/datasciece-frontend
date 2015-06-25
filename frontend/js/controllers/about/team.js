@@ -1,4 +1,5 @@
 app.controller('aboutTeamController', function($scope) {
+    $scope.taskPage = false;
     var teamArr = getTeam();
     $scope.teamSegments = segment(teamArr, 3);
     console.log($scope.teamSegments);

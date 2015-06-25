@@ -1,4 +1,5 @@
 app.controller('termsController', function($scope, $location, $localStorage, Api, Logger) {
+    $scope.taskPage = false;
     $scope.prev = function() {
         $location.path('user/quick-questions');
     }

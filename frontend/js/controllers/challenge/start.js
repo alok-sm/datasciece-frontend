@@ -1,4 +1,5 @@
 app.controller('challengeStartController', function($http, $scope, $location, $localStorage, Api, Logger) {
+    $scope.taskPage = false;
     $scope.user = {};
     $http.get("http://crowds.5harad.com/api/tasks?token=" + $localStorage.token)
     .success(function(response){
