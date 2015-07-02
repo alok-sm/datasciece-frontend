@@ -85,6 +85,13 @@ body {
     height: 100%;
 }
 
++/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px)  {
+    .view-container {
+        overflow-y: hidden;
+   }
+}
+
 img {
     max-height: 100%;
     max-width: 100%;
