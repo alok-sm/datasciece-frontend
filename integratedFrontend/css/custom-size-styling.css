@@ -1,0 +1,21 @@
+/* Large devices (large desktops, 1200px and up) */
+@media(min-width:1200px) {
+}
+
+/* height-based styling */
+@media(min-height: 960px) {
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px)  {
+}
+
+/* Small devices (tablets, 768px and up) */
+@media(min-width:768px) {
+}
+
+/* Extra small devices (phones, 767px and below) */
+@media(max-width:767px) {
+
+}
+

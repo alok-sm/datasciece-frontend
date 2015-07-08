@@ -1,0 +1,75 @@
+<head>
+    <title>{{SITE_NAME}} | Challenge Completed!</title>
+</head>
+
+<div class="slide done">
+    <div class="backdrop">
+        <div class="hidden-xs hidden-sm text-center new-challenge-row" ng-hide="roundsCompleted === 50">
+            <a class="btn blue new-challenge-button" ng-click="startNewChallenge()">
+                <div class="left triangle"></div>
+                <div class="right triangle"></div>
+                Start the next round
+            </a>
+        </div>
+    </div>
+    <div class="grey-backdrop hidden-sm hidden-xs"></div>
+    <div class="row header-row">
+        <div class="col-md-12 text-center">
+            <h1 class="cursive" ng-show="beeWasUnlocked">
+                Congratulations, you are now a {{localStorage.beeName}}!
+            </h1>
+            <h1 class="cursive" ng-hide="beeWasUnlocked">
+                Well done, {{localStorage.beeName}}!
+            </h1>
+        </div>
+    </div>
+    <div class="row height-60">
+        <div class="col-md-4 text-center next-bee-col hidden-md hidden-lg">
+            <img class="next-bee" ng-src="{{animatedBeePath()}}"/>
+        </div>
+        <div class="col-md-4 results-col">
+            <div ng-include="'views/challenge/_results.html'"></div>
+        </div>
+        <div class="col-md-4 text-center next-bee-col hidden-xs hidden-sm">
+            <img class="next-bee" ng-src="{{animatedBeePath()}}"/>
+        </div>
+        <div class="col-md-4 text-center achievement-col">
+            <div>
+                <strong ng-show="beeWasUnlocked && localStorage.roundsCompleted < 50">
+                    One achievement unlocked!
+                </strong>
+                <strong ng-show="localStorage.roundsCompleted === 50">
+                    All achievements unlocked!
+                </strong>
+                <strong ng-show="!beeWasUnlocked && hasNextBeeToUnlock">
+                    {{roundsToUnlockNextBee}} more
+                    <span ng-show="roundsToUnlockNextBee === 1">
+                        round
+                    </span>
+                    <span ng-hide="roundsToUnlockNextBee === 1">
+                        rounds
+                    </span>
+                    to unlock the next bee!
+                </strong>
+            </div>
+            <img ng-src="{{achievementImagePath()}}"/>
+        </div>
+    </div>
+    <div class="row hidden-md hidden-lg" ng-hide="roundsCompleted === 50">
+        <div class="col-xs-12 text-center">
+            <a class="btn blue new-challenge-button" ng-click="startNewChallenge()">
+                <div class="left triangle"></div>
+                <div class="right triangle"></div>
+                Start the next round
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<div class="row hidden">
+    <button ng-click="setRoundsCompleted(0)">Reset</button>
+    <button ng-click="setRoundsCompleted(localStorage.roundsCompleted-1)">-</button>
+    <button ng-click="setRoundsCompleted(localStorage.roundsCompleted+1)">+</button>
+    {{localStorage.roundsCompleted}} {{localStorage.beeRank}}
+</div>

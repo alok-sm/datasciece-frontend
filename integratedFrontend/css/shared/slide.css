@@ -1,0 +1,93 @@
+.slide {
+    background: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    left: 0;
+    right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px)  {
+    .slide {
+        left: 40px;
+        right: 40px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.slide-infinite {
+    position: relative;
+    background: white;
+    margin: 20px 0;
+    padding-bottom: 20px;
+}
+
+.slide h1, .slide-infinite h1 {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.slide .btn.next-button, .slide-infinite .btn.next-button {
+    right: 0;
+    border-radius: 0;
+    font-weight: bold;
+    z-index: 100;
+    width: 100%;
+}
+
+.slide .btn.prev-button, .slide-infinite .btn.prev-button {
+    left: 0;
+    width: 100%;
+}
+
+.slide .btn.prev-button, .slide-infinite .btn.prev-button, .slide .btn.next-button, .slide-infinite .btn.next-button {
+    bottom: 1.5em;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px)  {
+    .slide {
+        position: absolute;
+        top: 20px;
+        bottom: 20px;
+    }
+    .slide .btn.next-button, .slide-infinite .btn.next-button, .slide .btn.prev-button, .slide-infinite .btn.prev-button {
+        position: absolute;
+        width: auto;
+    }
+    .slide .btn.prev-button, .slide-infinite .btn.prev-button, .slide .btn.next-button, .slide-infinite .btn.next-button {
+        bottom: 2.5em;
+    }
+
+    .slide-infinite {
+        margin: 20px 40px;
+    }
+}
+
+
+.slide .new-challenge-button {
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 0;
+    position: relative;
+}
+
+.back-col {
+    padding-top: 3%;
+    height: 30%;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px)  {
+    .back-col {
+        padding-top: 0;
+        height: 100%;
+    }
+}

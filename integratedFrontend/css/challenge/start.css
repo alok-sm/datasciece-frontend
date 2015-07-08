@@ -1,0 +1,43 @@
+.start h1 {
+    font-size: 1.1em;
+    line-height: 1.3em;
+}
+
+.start .main-bee img {
+    padding-top: 100%;
+}
+
+.start .question-row {
+    padding-top: 10%;
+    font-size: 0.8em;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media(min-width:768px) {
+    .start .question-row {
+        padding-top: 0;
+        font-size: 1em;
+    }
+}
+
+.start .rank-input {
+    margin-bottom: 1em;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px)  {
+    .start h1 {
+        font-size: 1.5em;
+    }
+    .start .main-bee img {
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+}
+
+
+
+.start .error {
+    display: block;
+    margin-top: 10px;
+}

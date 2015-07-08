@@ -1,0 +1,12 @@
+<head>
+    <title>{{SITE_NAME}} | Challenge</title>
+</head>
+<div class="task-slide-container slide-container">
+    <div ng-if="currentSlide === 1" class="animate ease slide-left">
+        <div ng-include="'views/challenge/_question.html'"></div>
+    </div>
+    <div ng-if="currentSlide === 2" class="animate ease slide-left">
+        <div ng-include="'views/challenge/_question.html'"></div>
+    </div>
+</div>
+

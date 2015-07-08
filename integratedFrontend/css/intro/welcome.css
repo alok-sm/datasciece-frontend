@@ -1,0 +1,44 @@
+.welcome h1 {
+    position: relative;
+}
+
+.welcome .header-row {
+    padding-top: 7%;
+    padding-bottom: 2%;
+    height: 25%;
+}
+
+.welcome .bee-row {
+    height: 60%;
+}
+
+
+/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px)  {
+    .welcome .header-row {
+        padding-top: 2%;
+        height: 30%;
+    }
+    .welcome .bee-row {
+        height: 50%;
+    }
+}
+
+.welcome .side-bees {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.welcome .side-bees img {
+    max-height: 100%;
+}
+
+.welcome .button-row {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    height: 12%;
+}
+
+.welcome .btn {
+    font-weight: bold;
+}

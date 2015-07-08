@@ -1,0 +1,222 @@
+
+.done .header-row {
+    height: 30%;
+    font-size: 1.5em;
+}
+
+.done .results-col {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.done .new-challenge-button {
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.done .backdrop {
+    background-color: white;
+    position: absolute;
+    top: 20px;
+    bottom: -110%;
+    left: 0;
+    right: 0;
+}
+
+.done .new-challenge-button {
+    position: relative;
+    z-index: 200;
+}
+
+.done .next-bee {
+    padding-top: 20%;
+}
+
+
+.done .achievement-col {
+    margin-top: 2em;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px)  {
+    .done .achievement-col {
+        margin-top: 0;
+    }
+}
+
+.done .achievement-col img {
+    margin-top: 10%;
+    max-height: 40%;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media(min-width:768px) {
+    .done .achievement-col img {
+        max-height: 80%;
+    }
+}
+
+
+/* Medium devices (desktops, 992px and up) */
+@media(min-width:992px)  {
+    .done .header-row {
+        height: 20%;
+        font-size: 2em;
+    }
+
+    .done .results-col {
+        padding-top: 0;
+    }
+    .done .backdrop {
+        z-index: 20;
+        background: none;
+        bottom: 0;
+    }
+    .done .next-bee {
+        padding-top: 0;
+    }
+}
+
+
+.done .result-item small {
+    display: block;
+    font-size: 0.7em;
+    margin-bottom: -0.5em;
+    margin-top: 1em;
+}
+
+.done .result-item .large {
+    font-size: 2em;
+}
+
+.done .result-item .forward-slash {
+    font-size: 1.5em;
+}
+
+.new-challenge-row {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2em;
+}
+
+.done .bar {
+    width: 96%;
+    margin-left: 2%;
+    position: relative;
+}
+
+.done .bar.rank-bar {
+    height: 1em;
+    background-color: #d1d3d4;
+}
+
+.done .bar.rank-labels .label-wrapper {
+    position: absolute;
+    font-size: 0.8em;
+    display: block;
+    text-align: center;
+}
+.done .bar.rank-labels .label-wrapper label {
+    margin-left: -50%;
+}
+
+
+.done .rank-labels .last {
+    left: 0;
+}
+
+.done .rank-labels .first {
+    left: 100%;
+}
+
+.done .rank-labels .crowd {
+    left: 60%;
+}
+
+.done .rank-labels .user {
+    left: 80%;
+}
+
+.done .bar .filled {
+    position: absolute;
+    left: 80%;
+    width: 20%;
+    height: 100%;
+}
+
+.done .marker {
+    position: absolute;
+    width: 2px;
+    height: 1.5em;
+    background-color: black;
+    bottom: 0;
+}
+
+.done .marker.user {
+    left: 80%;
+}
+
+.done .marker.crowd {
+    left: 60%;
+}
+
+.done .bar.rank-labels {
+    height: 40px;
+    padding-top: 5px;
+}
+
+.done .bar.icons {
+    height: 4em;
+    margin-top: 10px;
+}
+
+.done .bar.icons .icon {
+    position: absolute;
+    margin-left: -1em;
+    width: 2em;
+    text-align: center;
+}
+
+.done .bar.icons .icon label {
+    font-size: 0.7em;
+}
+
+.done .bar.icons .icon img {
+    width: 100%;
+}
+
+.done .bar.icons .icon.crowd {
+    left: 60%;
+}
+
+.done .bar.icons .icon.user {
+    left: 80%;
+}
+
+.done .bar.rank-bar .triangle {
+    position: absolute;
+    top: 0;
+    border: 0.5em solid transparent;
+    border-left: none;
+    border-right: none;
+}
+
+.done .bar.rank-bar .triangle.left {
+    border-right: 0.4em solid #d1d3d4;
+    left: -0.38em;
+}
+
+.done .bar.rank-bar .triangle.right {
+    border-left: 0.4em solid #37a2d4;
+    right: -0.38em;
+}
+
+.done .grey-backdrop {
+    background-color: #f4f4f4;
+    position: absolute;
+    height: 100%;
+    left: 32%;
+    width: 36%;
+}
+
